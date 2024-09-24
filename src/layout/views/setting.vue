@@ -1,6 +1,4 @@
 <template>
-    <el-alert title="以下配置可实时预览，使用Pinia控制，开发者可在 store/system/global.ts 中配置默认值，非常不建议在生产环境下开放布局设置" type="error"
-        :closable="false"></el-alert>
     <el-divider class="divider" content-position="center">
         <el-icon>
             <Notification />

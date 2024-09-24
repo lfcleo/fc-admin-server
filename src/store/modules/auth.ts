@@ -5,11 +5,15 @@ import { UserInfoModel } from "@/models/authModel";
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
         token: "",
+        refreshToken: "",
         userInfo: {
-            userId: "",
-            userName: "",
-            dashboard: "",
-            role: [],
+            id: 0,
+            mobile: "",
+            email: "",
+            name: "",
+            avatar: "",
+            sex: 0,
+            roles: [],
         } as UserInfoModel
     }),
     persist: {

@@ -2,35 +2,37 @@
 export interface AuthRequestModel {
     username: string;
     password: string;
+    code?: string;
+    auto: boolean;
+    timestamp?: number;
 }
 
-//Auth返回数据模型，返回token和用户信息
+// Auth返回数据模型，返回token和用户信息
 export interface AuthModel {
+    refreshToken: string;
     token: string;
     userInfo: UserInfoModel;
 }
 
-/**
- * 用户模型
- */
+// 管理员模型
 export interface UserInfoModel {
-    userId: string;
-    userName: string;
-    dashboard: string;
-    role: string[];
+    id?: number;
+    mobile: string;
+    email: string;
+    name: string;
+    avatar: string;
+    sex: number;
+    roles?: string[];
 };
 
-/**
- * 动态路由和权限模型
- */
+// 动态路由和权限模型
 export interface MenuPermissionsModel {
     menu: Menu.MenuOptions[];
     permissions: string[];
 }
 
-/**
- * 任务模型
- */
+
+// 任务模型
 export interface TaskModel {
     id: string;
     taskName: string;
@@ -41,9 +43,7 @@ export interface TaskModel {
     createDate: string;
 }
 
-/**
- * 消息模型
- */
+// 消息模型
 export interface MsgModel {
     id: number;
     type: string;
@@ -53,3 +53,15 @@ export interface MsgModel {
     link: string;
     time: string;
 }
+
+// 修改密码请求模型
+export interface FormPwdModel {
+    usePassword: string;
+    newPassword: string;
+    timestamp: number;
+};
+
+// 字典数据请求模型
+export interface DictKeyModel {
+    key: string;
+};

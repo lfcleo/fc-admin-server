@@ -24,14 +24,19 @@
         </div>
         <el-dropdown class="user panel-item" trigger="click">
             <div class="user-avatar">
-                <el-avatar :size="30" src="/img/avatar.jpg"></el-avatar>
-                <label>{{ authStore.userInfo.userName }}</label>
+                <el-avatar :size="30" :src="authStore.userInfo.avatar"></el-avatar>
+                <label>{{ authStore.userInfo.name }}</label>
                 <el-icon>
                     <ArrowDown />
                 </el-icon>
             </div>
             <template #dropdown>
                 <el-dropdown-menu>
+                    <el-dropdown-item @click="userInfoClick()">
+                        <el-icon>
+                            <User />
+                        </el-icon>{{ $t("header.personalData") }}
+                    </el-dropdown-item>
                     <el-dropdown-item @click="clearCache()">
                         <el-icon>
                             <Edit />
@@ -92,7 +97,7 @@
         </el-container>
     </el-drawer>
 
-    <el-drawer title="布局实时演示" v-model="settingVisible" :size="320" append-to-body destroy-on-close>
+    <el-drawer title="设置" v-model="settingVisible" :size="320" append-to-body destroy-on-close>
         <setting></setting>
     </el-drawer>
 </template>
@@ -107,6 +112,7 @@ import router from '@/router';
 import { useAuthStore } from "@/store/modules/auth";
 import { useSysGlobalStore } from '@/store/system/global';
 import { MsgModel } from '@/models/authModel';
+import { authLogout } from '@/api/modules/auth';
 
 const authStore = useAuthStore()
 const sysGlobalStore = useSysGlobalStore()
@@ -201,7 +207,10 @@ const searchClick = () => {
 const tasksClick = () => {
     tasksVisible.value = true
 }
-
+//进入个人信息页面
+const userInfoClick = () => {
+    router.push({ path: '/userCenter' });
+}
 //清除缓存
 const clearCache = () => {
     ElMessageBox.confirm('清除缓存会将系统初始化，包括主题、语言设置等，是否继续？', '提示', {
@@ -219,9 +228,11 @@ const logoutClick = () => {
         type: 'warning',
         confirmButtonClass: 'el-button--danger'
     }).then(() => {
-        authStore.$reset();
-        router.replace({
-            path: '/login'
+        authLogout().finally(() => {
+            authStore.$reset();
+            router.replace({
+                path: '/login'
+            })
         })
     }).catch(() => {
         //取消退出
@@ -320,5 +331,9 @@ const settingClick = () => {
 
 .dark .msg-list li a:hover {
     background: #383838;
+}
+
+.badge {
+    margin-top: 4px;
 }
 </style>

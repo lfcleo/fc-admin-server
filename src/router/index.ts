@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) => {
         apiMenu.forEach(item => {
             item.children && delete item.children;
             if (item.component && typeof item.component == "string") {
-                item.component = modules["/src/views" + item.component + ".vue"];
+                item.component = modules["/src/views/" + item.component + ".vue"];
             }
             if (item.meta.isFull) {
                 router.addRoute(item as unknown as RouteRecordRaw);

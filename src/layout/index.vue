@@ -56,7 +56,7 @@ watch(route, (val) => {
 onMounted(() => {
     onLayoutResize();
     window.addEventListener('resize', onLayoutResize);
-    const staticMenus = menuTool.convertAndFilterRoutes(menuTool.staticRoutes(), authStore.userInfo.role)
+    const staticMenus = menuTool.convertAndFilterRoutes(menuTool.staticRoutes(), authStore.userInfo.roles!)
     menuList.value = [...menuStore.list, ...staticMenus]
     showThis()
 })
@@ -97,6 +97,10 @@ const exitMaximize = () => {
 }
 //选择一级菜单
 const selectOneMenu = (item: Menu.MenuOptions) => {
+    if (item.meta.type == 'LINK') {
+        window.open(item.path, '_blank');
+        return
+    }
     pmenu.value = item
     if (pmenu.value.children && pmenu.value.children.length > 0) {
         nextMenu.value = filterUrl(pmenu.value.children)

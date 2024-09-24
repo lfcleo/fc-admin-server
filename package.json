@@ -1,5 +1,5 @@
 {
-    "name": "fc-admin-thin",
+    "name": "fc-admin-server",
     "private": true,
     "version": "1.0.1",
     "type": "module",

@@ -14,13 +14,16 @@ export default {
             return CryptoJS.enc.Base64.parse(cipher).toString(CryptoJS.enc.Utf8)
         }
     },
+    //SHA1加密
+    SHA1(data: string): string {
+        return CryptoJS.SHA1(data).toString();
+    },
     //AES加解密
     AES: {
         encrypt(data: string, secretKey: string, iv: string): string {
             if (secretKey.length % 8 != 0) {
                 console.warn("[FC-Admin error]: 秘钥长度需为8的倍数，否则解密将会失败。")
             }
-
             return CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
                 iv: CryptoJS.enc.Utf8.parse(iv || ""),
                 mode: CryptoJS.mode.CBC,
