@@ -4,7 +4,7 @@
             <el-tabs v-model="activeName">
                 <el-tab-pane class="pane" label="菜单权限" name="one" lazy>
                     <fc-tree-filter :border="true" ref="fcTFMenuRef" multiple :request-api="menuList"
-                        :default-value="treeFilterValue" :set-props="tfProps">
+                        :default-value="treeFilterValue" :tree-props="tfProps">
                         <template #default="scope">
                             <span>
                                 {{ scope.row.data.meta.title + (scope.row.data.meta.type == 'BUTTON' ? ' - 按钮' : '') }}
@@ -67,7 +67,7 @@ const treeFilterValue = ref<string[]>([]);
 const getRoleMenus = async () => {
     if (fcTFMenuRef.value && fcTFMenuRef.value.treeData.length > 0 && treeFilterValue.value.length == 0) {
         fcTFMenuRef.value.loading = true
-        fcTFMenuRef.value.isCheck = true
+        fcTFMenuRef.value.checkStrictly = true
         var response = await roleMenus({ id: props.roleID })
         if (response.data) {
             treeFilterValue.value = response.data.map(id => id.toString())
@@ -76,7 +76,7 @@ const getRoleMenus = async () => {
         // 解决后端返回父节点 子节点全选中的问题，使用延时防止正式环境dom树刷新了 ，使得el-tree树节点对应的ID也刷新的问题。
         setTimeout(() => {
             nextTick(() => {
-                fcTFMenuRef.value!.isCheck = false
+                fcTFMenuRef.value!.checkStrictly = false
             })
         }, 10);
     }

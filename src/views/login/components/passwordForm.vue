@@ -116,8 +116,8 @@ const login = async (formEl: FormInstance | undefined) => {
             ElMessage.success("Login Success 登录成功");
             islogin.value = false;
         } catch (error) {
-            console.log(error)
             islogin.value = false;
+            fcCharVerify.value?.refresh();
         }
     })
 }

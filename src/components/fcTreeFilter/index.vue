@@ -13,9 +13,9 @@
         <el-input v-if="showSearch" v-model="filterText" placeholder="输入关键字进行过滤" clearable />
         <el-scrollbar :style="{ height: title || showSearch ? `calc(100% - 95px)` : `100%` }" v-loading="loading">
             <el-tree ref="treeRef" default-expand-all :node-key="name" :data="multiple ? treeData : treeAllData"
-                :show-checkbox="multiple" :check-strictly="isCheck" :current-node-key="!multiple ? selected : ''"
+                :show-checkbox="multiple" :check-strictly="checkStrictly" :current-node-key="!multiple ? selected : ''"
                 :highlight-current="!multiple" :expand-on-click-node="false" :check-on-click-node="multiple"
-                :props="setProps" :filter-node-method="filterNode" :default-checked-keys="multiple ? selected : []"
+                :props="treeProps" :filter-node-method="filterNode" :default-checked-keys="multiple ? selected : []"
                 @node-click="handleNodeClick" @check="handleCheckChange">
                 <template #default="scope">
                     <div class="custom-tree-node">
@@ -49,7 +49,7 @@ interface TreeFilterProps {
     defaultValue?: any;                         // 默认选中的值 ==> 非必传
     showSearch?: boolean;                       // 是否显示搜索框 ==> 默认不显示
     showAll?: boolean;                          // 是否显示选择全部 ==> 默认显示
-    setProps?: any;
+    treeProps?: any;
 }
 const props = withDefaults(defineProps<TreeFilterProps>(), {
     name: "id",
@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<TreeFilterProps>(), {
     multiple: false,
     showSearch: false,
     showAll: true,
-    setProps: {
+    treeProps: {
         children: "children",
         label: "label",
     }
@@ -69,7 +69,7 @@ const treeData = ref<{ [key: string]: any }[]>([]);
 const treeAllData = ref<{ [key: string]: any }[]>([]);
 
 const selected = ref();
-const isCheck = ref(false);
+const checkStrictly = ref(false);
 const setSelected = () => {
     if (props.multiple) {
         selected.value = Array.isArray(props.defaultValue) ? props.defaultValue : [props.defaultValue];
@@ -92,7 +92,7 @@ const getData = async () => {
         const { data } = await props.requestApi!();
         treeData.value = data;
         if (props.showAll) {
-            treeAllData.value = [{ id: 0, [props.setProps.label]: "全部" }, ...data];
+            treeAllData.value = [{ id: 0, [props.treeProps.label]: "全部" }, ...data];
         } else {
             treeAllData.value = [...data];
         }
@@ -115,7 +115,7 @@ watch(
         if (props.data?.length) {
             treeData.value = props.data;
             if (props.showAll) {
-                treeAllData.value = [{ id: 0, [props.setProps.label]: "全部" }, ...props.data];
+                treeAllData.value = [{ id: 0, [props.treeProps.label]: "全部" }, ...props.data];
             } else {
                 treeAllData.value = [...props.data];
             }
@@ -162,7 +162,7 @@ const handleCheckChange = () => {
 };
 
 // 暴露给父组件使用
-defineExpose({ treeData, treeAllData, treeRef, getData, isCheck, loading });
+defineExpose({ treeData, treeAllData, treeRef, getData, checkStrictly, loading });
 </script>
 
 <style scoped lang="scss">

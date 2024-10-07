@@ -3,7 +3,7 @@
         <el-aside>
             <el-container>
                 <el-main class="nopadding">
-                    <fc-tree-filter show-search ref="fcTFRef" :showAll="false" :set-props="{ label: 'name' }"
+                    <fc-tree-filter show-search ref="fcTFRef" :showAll="false" :tree-props="{ label: 'name' }"
                         :request-api="dictTypeList" @selectClick="changeTreeFilter">
                         <template #option="scope">
                             <span class="custom-tree-node">

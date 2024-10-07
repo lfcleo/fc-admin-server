@@ -3,8 +3,8 @@
         <el-header style="padding-bottom: 10px;height: auto;">
             <div class="left-panel"></div>
             <div class="right-panel">
-                <el-button v-role="['admin']" class="addBtn" :loading="submitLoading" type="primary"
-                    @click="submitClick(formRef)">提 交</el-button>
+                <el-button class="addBtn" :loading="submitLoading" type="primary" @click="submitClick(formRef)">
+                    提 交</el-button>
                 <el-button icon="Close" circle @click="() => { emit('cancelClick') }" />
             </div>
         </el-header>
@@ -73,7 +73,7 @@
                                 <div class="el-form-item-msg margin-left-20">视图将会全屏显示</div>
                             </div>
                         </el-form-item>
-                        <el-form-item label="标签" prop="isAffix" v-if="menuModel.meta.type != 'BUTTON'">
+                        <el-form-item label="固定" prop="isAffix" v-if="menuModel.meta.type != 'BUTTON'">
                             <div class="dis-flex">
                                 <el-switch v-model="menuModel.meta.isAffix" />
                                 <div class="el-form-item-msg margin-left-20">是否在顶部标签栏中固定，一般是首页。</div>

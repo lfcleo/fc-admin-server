@@ -128,7 +128,7 @@ export interface FcTableSelectModel {
     showbottomView?: boolean;                   // 是否显示底部试图 ==> 非必传（默认为true）
     showRefreshBtn?: boolean;                   // 是否需要刷新按钮 ==> 非必传（默认为true）
     showColumnBtn?: boolean;                    // 是否需要列设置按钮 ==> 非必传（默认为true）
-    selectable?: (row: any, index: number) => boolean;  //决定这一行的 CheckBox 是否可以勾选,仅对 type=selection 的列有效，同官方的selectable ==> 
+    selectable?: (row: any, index: number) => boolean;  //决定这一行的 CheckBox 是否可以勾选,仅对 type=selection 的列有效，同官方的selectable
 }
 const props = withDefaults(defineProps<FcTableSelectModel>(), {
     initParam: {},
