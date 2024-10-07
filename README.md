@@ -48,19 +48,11 @@ FC-Admin-Server是前后端分离项目，作者使用Go语言开发了一版服
 
 在`mysql`中，创建`fc_admin`数据库。
 
-根据自己电脑操作系统，选择下载后端程序文件
+项目根目录下的`server.zip`文件，是编译后压缩的服务端文件，移动到其它文件夹下解压，解压后的`server`文件夹里面有3个文件夹，根据自己电脑操作系统，进行操作。
 
-[MacOS系统下载]()
+以MacOS操作系统为例，接下来的操作是在解压后的`server/Mac`文件夹下进行的。（Windows和Linux一样，在解压后的`server/Windows`文件夹和`server/Linux`文件夹下进行）
 
-[Windows系统下载]()
-
-[Linux系统下载]()
-
-下载后可以把文件放在一个指定的文件夹下，解压
-
-以MacOS操作系统为例，接下来的操作是在解压后的`Mac`文件夹下进行的。（Windows和Linux一样，在解压后的`Windows`文件夹和`Linux`文件夹下进行）
-
-编辑器打开`config.yaml`文件，此文件为程序运行的配置文件，每一项配置都有注释说明，根据实际情况填写。主要配置`httpPort 端口号`，`database 数据库配置`，`redis 配置`。**账号密码等不要填错了**。
+编辑器打开`server/Mac/config.yaml`文件，此文件为程序运行的配置文件，每一项配置都有注释说明，根据实际情况填写。主要配置`httpPort 端口号`，`database 数据库配置`，`redis 配置`。**账号密码等不要填错了**。
 
 > MacOS操作系统
 
