@@ -38,15 +38,23 @@
 - [ ] 操作日志（视频介绍待录制）
 - [ ] 刷新权限（视频介绍待录制）
 
-# 开启本地服务器体验
+## 配套的后端服务项目
 
-FC-Admin-Server是前后端分离项目，作者使用Go语言开发了一版服务端，同时也希望有后端大佬们可以开发开源其它后端语言版本，如Java，PHP，Python...（开发文档整理中...）
+**Go语言** 
 
-## 准备
+- https://github.com/lfcleo/fc-admin-server-go （作者：[L](https://github.com/lfcleo)）
 
-服务端应用程序的运行需要安 装好`redis`（作者版本:7.2.4）和`mysql`（作者版本:8.3.0）。安装教程请自行百度/谷歌。运行程序前一定要先启动`redis`和`mysql`服务。
+## 开启本地服务器体验
 
-在`mysql`中，创建`fc_admin`数据库。
+如果没有后端开发技能，想体验项目可根据以下步骤进行操作。已有后端服务则无须进行此步骤。
+
+[FC-Admin-Server](https://github.com/lfcleo/fc-admin-server)是前后端分离项目，作者使用Go语言开发了一版服务端，同时也希望有后端大佬们可以开发开源其它后端语言版本，如Java，PHP，Python...（统一下项目名称格式，fc-admin-server-xxx。例如：fc-admin-server-java，fc-admin-server-php，fc-admin-server-python等，可联系作者在此文档中贴出您的开源地址。）
+
+> 准备
+
+服务端应用程序的运行需要安装`redis`（作者版本:7.2.4）和`mysql`（作者版本:8.3.0）。安装教程请自行百度/谷歌。运行程序前一定要先启动`redis`和`mysql`服务。
+
+在`mysql`中，创建`fc_admin`数据库。（数据库类型：CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci）
 
 项目根目录下的`server.zip`文件，是编译后压缩的服务端文件，移动到其它文件夹下解压，解压后的`server`文件夹里面有3个文件夹，根据自己电脑操作系统，进行操作。
 
@@ -107,4 +115,12 @@ main.exe
 npm run dev
 ```
 
-浏览器打开`http://localhost:2801`，即可体验。
+浏览器打开`http://localhost:2801`
+
+超级管理员账号：admin@admin.com
+
+超级管理员手机号：18888888888
+
+超级管理员密码：Qwe123
+
+即可体验。
